@@ -84,12 +84,10 @@ function renderResult(jsonResult) {
     } else {
         resultDisplay.style.color = '';
         let {type, activity, participants, accessibility} = jsonResult;
-        resultString = `
-        Type: ${type[0].toUpperCase() + type.slice(1)}
+        resultString = `Type: ${type[0].toUpperCase() + type.slice(1)}
         Activity: ${activity}
         No. of Participants: ${participants}
-        Accessibility: ${accessibility}
-        `;
+        Accessibility: ${accessibility}`;
     }
     result.innerText = resultString;
     resultDisplay.appendChild(result);

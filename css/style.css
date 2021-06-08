@@ -1,6 +1,11 @@
 :root {
     --main-width: min(80%, 45em);
     --font-size: 16px;
+    --input-control-focus: slateblue;
+    --info-border-color: rebeccapurple; 
+    --info-background-color: azure;
+    --result-font-color: azure;
+    --header-image-width: 300px;
 }
 
 html {
@@ -8,6 +13,7 @@ html {
 }
 
 * {
+    font-family: 'Rokkitt', serif;
     padding: 0;
     margin: 0;
     line-height: 1.5;
@@ -17,15 +23,34 @@ html {
 
 body {
     text-align: center;
+    background-color:snow;
 }
 
-form {
-    position: relative;
+header img {
+    width: var(--header-image-width);
+    height: auto;
+}
+
+main{
+    padding: 0 3em;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
 }
 
 input[type="button"] {
     margin: 1em 1em;
     cursor: pointer;
+}
+
+footer {
+    font-size: 0.8rem;
+    border-top: 1px solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    bottom: 0;
 }
 
 .tooltip {
@@ -34,21 +59,24 @@ input[type="button"] {
     width: 1em;
 }
 
-
 .input-control {
     position: relative;
     width: var(--main-width);
 }
 
+.input-control:focus {
+    outline-color: var(--input-control-focus);
+}
+
 .info {
-    border:3px solid rebeccapurple;
+    border:3px solid var(--info-border-color);
     border-radius: 3px;
     min-height: 3em;
     max-width: 20em;
     position: absolute;
     display: none;
     z-index: 5;
-    background-color: azure;
+    background-color: var(--info-background-color);
     left: 50%;
 }
 
@@ -56,19 +84,30 @@ input[type="button"] {
     display: block;
 }
 
-#description {
-    position: relative;
+#intro h1, p, #description {
     width: var(--main-width);
     margin: 0 auto;
+}
+
+#description {
+    position: relative;
     text-align: left;
 }
 
 #result {
     position: relative;
     width: var(--main-width);
-    height: 40vh;
+    min-height:15em;
     background-color: black;
-    color:azure;
+    color:var(--result-font-color);
     margin: 2em auto;
+    padding: 1em 2em;
 }
 
+@media only screen and (max-width: 480px) {
+    :root {
+        --font-size: 12px;
+        --header-image-width: 200px;
+        --main-width: 90%;
+    }
+}
