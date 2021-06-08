@@ -19,8 +19,13 @@ body {
     text-align: center;
 }
 
+form {
+    position: relative;
+}
+
 input[type="button"] {
     margin: 1em 1em;
+    cursor: pointer;
 }
 
 .tooltip {
@@ -29,13 +34,30 @@ input[type="button"] {
     width: 1em;
 }
 
+
 .input-control {
     position: relative;
     width: var(--main-width);
 }
 
+.info {
+    border:3px solid rebeccapurple;
+    border-radius: 3px;
+    min-height: 3em;
+    max-width: 20em;
+    position: absolute;
+    display: none;
+    z-index: 5;
+    background-color: azure;
+    left: 50%;
+}
+
+.info.view {
+    display: block;
+}
+
 #description {
-   /* position: relative; */
+    position: relative;
     width: var(--main-width);
     margin: 0 auto;
     text-align: left;

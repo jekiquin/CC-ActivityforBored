@@ -16,6 +16,7 @@ const submitQuery = document.getElementById('submit');
 const randomQuery = document.getElementById('random');
 const resultDisplay = document.getElementById('result');
 const activityForm = document.getElementById('activity-form');
+const toolTips = Array.from(document.querySelectorAll('.tooltip'));
 
 
 
@@ -40,15 +41,15 @@ function setFullQuerry(queryObj) {
         return url + '/';
     }
     for (key in queryObj) {
-        if (firstParam) {
-            firstParam = false;
-        } else {
-            queryOperator = '&';
-        }
         if (queryObj[key] !== '') {
-            stringToPass += queryOperator + key + '=' + queryObj[key];
+            if (firstParam) {
+                stringToPass += '?';
+                firstParam = false;
+            } else {
+                stringToPass += '&';
+            }
+            stringToPass += key + '=' + queryObj[key];
         }
-        
     }
     return url + stringToPass;
 }
@@ -115,8 +116,12 @@ body.onload = () => {
     })
 }
 
+
 randomQuery.onclick = (e) => {
     e.preventDefault();
+    typeSelect.options.selectedIndex = 0;
+    participantsSelect.value = '';
+    accessibilitySelect.value = '';
     getActivity({
         type: '',
         participants: '',
@@ -154,6 +159,18 @@ accessibilitySelect.addEventListener('keypress', e => {
         e.preventDefault();
     }
 });
+
+toolTips.forEach(toolTip => {
+    const targetClassList = toolTip.classList;
+    const infoToDisplay = document.querySelector(`.${targetClassList[0]}.info`);
+    toolTip.addEventListener('mouseover',  function() {
+        infoToDisplay.classList.add('view');
+    });
+    toolTip.addEventListener('mouseout', function() {
+        infoToDisplay.classList.remove('view');
+    });
+});
+
 
 
 
