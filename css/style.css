@@ -1,0 +1,47 @@
+:root {
+    --main-width: max(30%, 60em);
+}
+
+html {
+    font-size: 16px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+}
+
+.tooltip {
+    cursor: pointer;
+    height: 1em;
+    width: 1em;
+}
+
+.input-control {
+    position: relative;
+    width: var(--main-width);
+}
+
+#description {
+   /* position: relative; */
+    width: var(--main-width);
+    margin: 0 auto;
+    text-align: left;
+}
+
+#result {
+    position: relative;
+    width: var(--main-width);
+    height: 40vh;
+    background-color: black;
+    color:azure;
+    margin: 2em auto;
+}
+

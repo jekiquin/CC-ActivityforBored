@@ -4,10 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <script src="./source/main.js" defer></script>
     <title>Are you bored?</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Are You Bored?</h1>
+    </header>
+    <main>
+        <section id="intro">
+            <h2>Search for activities!</h2>
+            <p>We are here to give you suggestions on what to do depending on the following:</p>
+            <table id="description">
+            </table>
+        </section>
+        <form id="activity-form" name="activity-form" action="#" method="post">
+            <label for="type-select">Type:</label>
+            <br>
+            <select class='input-control' name="type-select" id="type-select">
+                <option value="">--Please select activity--</option>
+            </select>
+            <img src="./media/question-circle-regular.svg" alt="info" class="tooltip">
+            <br>
+            <label for="participants-select">No. of Participants</label>
+            <br>
+            <input type="number" class='input-control' name="participants-select" id="participants-select", min="0">
+            <img src="./media/question-circle-regular.svg" alt="info" class="tooltip">
+            <br>
+            <label for="accessibility-select">Accessbility</label>
+            <br>
+            <input class='input-control' type="number" name="accessibility-select" id="accessibility-select", min="0", max="0">
+            <img src="./media/question-circle-regular.svg" alt="info" class="tooltip">
+            <br>
+            <input type="button" id="submit" value="Submit">
+            <input type="button" id="random" value="Random">
+        </form>
+        <section id="result"></section>
+
+    </main>
+    <footer>
+
+    </footer>
 </body>
 </html>
