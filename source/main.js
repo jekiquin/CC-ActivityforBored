@@ -1,4 +1,4 @@
-const url = 'http://www.boredapi.com/api/activity';
+const url = 'https://www.boredapi.com/api/activity';
 const typeSelectList = ['education', 'recreational', 'social', 'diy', 'charity', 'cooking', 'relaxation', 'music', 'busywork'];
 const descriptionList = [
     'Type of activity',
@@ -22,7 +22,7 @@ const toolTips = Array.from(document.querySelectorAll('.tooltip'));
 
 async function getActivity(queryObj) {
     try {
-        const response = await fetch(setFullQuerry(queryObj));
+        const response = await fetch(setFullQuerry(queryObj), {cache: 'no-cache'});
         const responseJson = await response.json();
 
         // display data here
