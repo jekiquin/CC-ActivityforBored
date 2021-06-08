@@ -1,9 +1,10 @@
 :root {
-    --main-width: max(30%, 60em);
+    --main-width: min(80%, 45em);
+    --font-size: 16px;
 }
 
 html {
-    font-size: 16px;
+    font-size: var(--font-size);
 }
 
 * {
@@ -16,6 +17,10 @@ html {
 
 body {
     text-align: center;
+}
+
+input[type="button"] {
+    margin: 1em 1em;
 }
 
 .tooltip {

@@ -9,11 +9,14 @@ const descriptionList = [
 //DOM
 const body = document.body;
 const typeSelect = document.getElementById('type-select');
+const participantsSelect = document.getElementById('participants-select');
+const accessibilitySelect = document.getElementById('accessibility-select');
 const description = document.getElementById('description');
 const submitQuery = document.getElementById('submit');
 const randomQuery = document.getElementById('random');
 const resultDisplay = document.getElementById('result');
-const activityForm = document.getElementById('activity-form')
+const activityForm = document.getElementById('activity-form');
+
 
 
 async function getActivity(queryObj) {
@@ -26,22 +29,6 @@ async function getActivity(queryObj) {
 
     } catch (err) {
         console.log(err);
-    }
-}
-
-
-// parameters from form
-function getParamatersFromForm() {
-    // get data from DOM
-    const formData = new FormData(activityForm);
-    const formArray = [];
-    for (let element of formData) {
-        formArray.push(element);
-    }
-    return {
-        type: formArray[0][1],
-        participants: formArray[1][1],
-        accessibility: formArray[2][1]
     }
 }
 
@@ -66,22 +53,42 @@ function setFullQuerry(queryObj) {
     return url + stringToPass;
 }
 
+// parameters from form
+function getParamatersFromForm() {
+    // get data from DOM
+    const formData = new FormData(activityForm);
+    const formArray = [];
+    for (let element of formData) {
+        formArray.push(element);
+    }
+    return {
+        type: formArray[0][1],
+        participants: formArray[1][1],
+        accessibility: formArray[2][1]
+    }
+}
+
 function renderResult(jsonResult) {
     if (resultDisplay.firstChild) {
         resultDisplay.removeChild(resultDisplay.firstChild);
     }
 
     const result = document.createElement('p');
-    var resultString = '';
+    var resultString;
 
     if (jsonResult.error) {
-        resultString += 'No activity found with the specified parameters'
+        resultString = 'No activity found with the specified parameters';
+        resultDisplay.style.color = 'red';
 
     } else {
-        for (let key in jsonResult) {
-            resultString += `${key}: ${jsonResult[key]}\n`;
-        }
-
+        resultDisplay.style.color = '';
+        let {type, activity, participants, accessibility} = jsonResult;
+        resultString = `
+        Type: ${type[0].toUpperCase() + type.slice(1)}
+        Activity: ${activity}
+        No. of Participants: ${participants}
+        Accessibility: ${accessibility}
+        `;
     }
     result.innerText = resultString;
     resultDisplay.appendChild(result);
@@ -122,6 +129,31 @@ submitQuery.onclick = (e) => {
     const formObj = getParamatersFromForm();
     getActivity(formObj);
 }
+
+/*
+For firefox bug. Not displaying non-digit characters
+and negative.
+*/
+participantsSelect.addEventListener('keypress', e => {
+    const inputValue = participantsSelect.value;
+    const key = e.key;
+    if (!key.match(/[0-9]/)) {
+        e.preventDefault();
+    }
+});
+
+accessibilitySelect.addEventListener('keypress', e => {
+    const inputValue = accessibilitySelect.value;
+    const minValue = accessibilitySelect.min;
+    const maxValue = accessibilitySelect.max;
+    const key = e.key;
+    if (!key.match(/[0-9.]/)) {
+        e.preventDefault();
+    }
+    if (key==='.' && inputValue.includes('.')) {
+        e.preventDefault();
+    }
+});
 
 
 
